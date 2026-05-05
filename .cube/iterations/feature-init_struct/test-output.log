@@ -1,0 +1,2 @@
+PASS src/test/java/com/novelfactory/integration/PipelineTaskFlowIntegrationTest.java 4/4
+PASS src/test/java/com/novelfactory/agent/service/StubAgentOrchestratorTest.java 3/3

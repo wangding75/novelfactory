@@ -1,0 +1,61 @@
+# STATUS.yaml — Per-task TDD development progress
+# AI reads this file at session start to recover context
+# Update phase after completing each task
+#
+# phase values: locked | green | done
+# tracking fields (added during execution): started_at, completed_at, test_passed, test_total
+
+stage: 04-development
+project: Novel Factory
+branch: feature/init_struct
+
+tasks:
+  - task: "新建 Gradle Groovy DSL 的 Spring Boot 单体工程骨架，接入 Web、Validation、Actuator、OpenAPI、MyBatis-Plus 和 MySQL 依赖，并提供应用启动入口与基础资源配置。"
+    test_file: NovelFactoryApplicationTest.java
+    phase: done
+    started_at: "2026-05-04 23:31"
+    test_passed: 1
+    test_total: 1
+    completed_at: "2026-05-04 23:32"
+  - task: "建立 `common` 公共层骨架，提供统一响应对象、错误码枚举、业务异常基类、全局异常处理器、系统验证接口以及基础配置类。"
+    test_file: CommonWebContractTest.java
+    phase: done
+    started_at: "2026-05-04 23:34"
+    test_passed: 4
+    test_total: 4
+    completed_at: "2026-05-04 23:36"
+  - task: "建立 `book` 域骨架，覆盖书籍新增、列表、详情的 Controller、Service、Repository、Mapper、Entity、DTO 和状态枚举声明。"
+    test_file: BookControllerWebTest.java
+    phase: done
+    started_at: "2026-05-04 23:38"
+    test_passed: 4
+    test_total: 4
+    completed_at: "2026-05-04 23:39"
+  - task: "建立 `pipeline` 域骨架，覆盖流水线任务创建、任务查询的 Controller、Service、Repository、Mapper、Entity、DTO、任务类型和状态枚举声明。"
+    test_file: PipelineTaskControllerWebTest.java
+    phase: done
+    started_at: "2026-05-05 10:46"
+    test_passed: 4
+    test_total: 4
+    completed_at: "2026-05-05 10:47"
+  - task: "建立 `agent` 域骨架，提供 `AgentOrchestrator` 接口、占位执行器以及执行请求/结果模型，供 `pipeline` 域同步调用。"
+    test_file: StubAgentOrchestratorTest.java
+    phase: done
+    started_at: "2026-05-05 10:49"
+    test_passed: 3
+    test_total: 3
+    completed_at: "2026-05-05 11:02"
+  - task: "建立 `book -> pipeline -> agent` 的最小跨组件调用签名，使“创建流水线任务”链路在代码结构上完整连通，但不实现业务逻辑。"
+    test_file: PipelineTaskFlowIntegrationTest.java
+    phase: done
+    started_at: "2026-05-05 11:04"
+    test_passed: 4
+    test_total: 4
+    completed_at: "2026-05-05 11:06"
+  - task: "补充本地开发与部署骨架，提供 `application.yml`、开发期数据库配置占位以及基础 `Dockerfile`。"
+    test_file: ApplicationConfigContractTest.java
+    phase: done
+    started_at: "2026-05-05 11:08"
+    test_passed: 2
+    test_total: 2
+    completed_at: "2026-05-05 11:08"

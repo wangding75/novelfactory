@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.novelfactory.integration.PipelineTaskFlowIntegrationTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-05-05T03:43:10.644Z" hostname="LAPTOP-MUCR3O1G" time="0.568">
+  <properties/>
+  <testcase name="getPipelineTask_whenMissing_throwsPipelineTaskNotFound()" classname="com.novelfactory.integration.PipelineTaskFlowIntegrationTest" time="0.522"/>
+  <testcase name="createPipelineTask_executesBookToPipelineToAgentFlow()" classname="com.novelfactory.integration.PipelineTaskFlowIntegrationTest" time="0.026"/>
+  <testcase name="createPipelineTask_whenBookMissing_throwsBookNotFound()" classname="com.novelfactory.integration.PipelineTaskFlowIntegrationTest" time="0.004"/>
+  <testcase name="createPipelineTask_whenAgentExecutionFails_throwsAgentExecutionFailed()" classname="com.novelfactory.integration.PipelineTaskFlowIntegrationTest" time="0.005"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

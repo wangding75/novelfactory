@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.novelfactory.NovelFactoryApplicationTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-05-05T03:42:32.743Z" hostname="LAPTOP-MUCR3O1G" time="27.969">
+  <properties/>
+  <testcase name="contextLoads_andRegistersApplicationBean()" classname="com.novelfactory.NovelFactoryApplicationTest" time="5.68"/>
+  <system-out><![CDATA[11:42:33.925 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.novelfactory.NovelFactoryApplicationTest]: NovelFactoryApplicationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+11:42:34.781 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.novelfactory.NovelFactoryApplication for test class com.novelfactory.NovelFactoryApplicationTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.3.2)
+
+2026-05-05T11:42:38.626+08:00  INFO 13514 --- [novel-factory] [    Test worker] c.n.NovelFactoryApplicationTest          : Starting NovelFactoryApplicationTest using Java 21.0.3 with PID 13514 (started by wangding in /mnt/d/git/novelfactory)
+2026-05-05T11:42:38.630+08:00  INFO 13514 --- [novel-factory] [    Test worker] c.n.NovelFactoryApplicationTest          : No active profile set, falling back to 1 default profile: "default"
+ _ _   |_  _ _|_. ___ _ |    _ 
+| | |\/|_)(_| | |_\  |_)||_|_\ 
+     /               |         
+                        3.5.7 
+2026-05-05T11:42:54.630+08:00  INFO 13514 --- [novel-factory] [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoints beneath base path '/actuator'
+2026-05-05T11:42:54.831+08:00  INFO 13514 --- [novel-factory] [    Test worker] c.n.NovelFactoryApplicationTest          : Started NovelFactoryApplicationTest in 18.586 seconds (process running for 24.641)
+]]></system-out>
+  <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (/tmp/gradle-home/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.14.18/417558ea01fe9f0e8a94af28b9469d281c4e3984/byte-buddy-agent-1.14.18.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
+</testsuite>

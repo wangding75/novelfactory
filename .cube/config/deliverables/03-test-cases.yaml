@@ -1,0 +1,30 @@
+stage: 03-test-cases
+name: Test Cases
+
+deliverables:
+  - id: test-map
+    type: file
+    path: test-map.yaml
+    required: true
+    min_size_bytes: 1200
+    must_contain:
+      - "NovelFactoryApplicationTest.java"
+      - "CommonWebContractTest.java"
+      - "BookControllerWebTest.java"
+      - "PipelineTaskControllerWebTest.java"
+      - "StubAgentOrchestratorTest.java"
+      - "PipelineTaskFlowIntegrationTest.java"
+      - "ApplicationConfigContractTest.java"
+
+checks:
+  - id: tests-root
+    type: files
+    path: ${paths.test_dir}
+    patterns:
+      - "NovelFactoryApplicationTest.java"
+      - "CommonWebContractTest.java"
+      - "BookControllerWebTest.java"
+      - "PipelineTaskControllerWebTest.java"
+      - "StubAgentOrchestratorTest.java"
+      - "PipelineTaskFlowIntegrationTest.java"
+      - "ApplicationConfigContractTest.java"

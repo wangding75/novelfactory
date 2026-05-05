@@ -4,9 +4,10 @@ import com.novelfactory.agent.model.AgentExecutionRequest;
 import com.novelfactory.agent.model.AgentExecutionResult;
 import com.novelfactory.common.api.ErrorCode;
 import com.novelfactory.common.exception.BusinessException;
-import org.springframework.stereotype.Service;
+import com.novelfactory.pipeline.model.PipelineTaskArtifactRefs;
+import com.novelfactory.pipeline.model.PipelineTaskStage;
+import com.novelfactory.pipeline.model.PipelineTaskStatus;
 
-@Service
 public class StubAgentOrchestrator implements AgentOrchestrator {
 
   private static final String STUB_SUCCESS_MESSAGE = "stub execution completed";
@@ -19,9 +20,15 @@ public class StubAgentOrchestrator implements AgentOrchestrator {
     if (request.bookId() == null) {
       throw new BusinessException(ErrorCode.VALIDATION_ERROR, "bookId must not be null");
     }
-    if (request.taskType() == null || request.taskType().isBlank()) {
-      throw new BusinessException(ErrorCode.VALIDATION_ERROR, "taskType must not be blank");
+    if (request.taskType() == null) {
+      throw new BusinessException(ErrorCode.VALIDATION_ERROR, "taskType must not be null");
     }
-    return new AgentExecutionResult(true, STUB_SUCCESS_MESSAGE);
+    return new AgentExecutionResult(
+        true,
+        PipelineTaskStatus.COMPLETED,
+        PipelineTaskStage.COMPLETED,
+        STUB_SUCCESS_MESSAGE,
+        null,
+        PipelineTaskArtifactRefs.empty());
   }
 }

@@ -1,0 +1,10 @@
+{
+  "providerName": "openai-compatible",
+  "modelName": "gpt-4.1-mini",
+  "promptTemplateKey": "creative.plan-card",
+  "variables": {
+    "title": "测试书名",
+    "genre": "都市系统流"
+  },
+  "responseSchemaName": "BookPlanCard"
+}

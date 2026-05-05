@@ -32,35 +32,7 @@ public class DefaultPipelineTaskApplicationService implements PipelineTaskApplic
 
   @Override
   public PipelineTaskResponse createPipelineTask(CreatePipelineTaskRequest request) {
-    BookEntity book =
-        bookRepository
-            .findById(request.bookId())
-            .orElseThrow(
-                () -> new NotFoundException(ErrorCode.BOOK_NOT_FOUND, "book not found: " + request.bookId()));
-
-    PipelineTaskEntity task = new PipelineTaskEntity();
-    task.setBookId(book.getId());
-    task.setTaskType(request.taskType());
-    task.setTriggerSource(request.triggerSource());
-    task.setStatus(PipelineTaskStatus.CREATED);
-
-    PipelineTaskEntity savedTask = persistTask(task);
-
-    try {
-      AgentExecutionResult executionResult =
-          executePipelineTask(
-              new AgentExecutionRequest(savedTask.getBookId(), savedTask.getTaskType().name()));
-
-      savedTask.setStatus(executionResult.success() ? PipelineTaskStatus.COMPLETED : PipelineTaskStatus.FAILED);
-      savedTask.setResultMessage(executionResult.message());
-      PipelineTaskEntity updatedTask = persistTask(savedTask);
-      return toResponse(updatedTask);
-    } catch (BusinessException exception) {
-      savedTask.setStatus(PipelineTaskStatus.FAILED);
-      savedTask.setResultMessage(exception.getMessage());
-      tryPersistFailureStatus(savedTask);
-      throw exception;
-    }
+    throw new UnsupportedOperationException("not implemented");
   }
 
   @Override
@@ -103,7 +75,11 @@ public class DefaultPipelineTaskApplicationService implements PipelineTaskApplic
         taskEntity.getId(),
         taskEntity.getBookId(),
         taskEntity.getTaskType(),
+        taskEntity.getGenerationTarget(),
         taskEntity.getStatus(),
-        taskEntity.getResultMessage());
+        taskEntity.getCurrentStage(),
+        taskEntity.getResultMessage(),
+        taskEntity.getFailureReason(),
+        PipelineTaskArtifactRefs.empty());
   }
 }

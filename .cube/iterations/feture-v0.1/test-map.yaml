@@ -1,0 +1,99 @@
+tasks:
+  - task: "扩展 pipeline_task 数据模型与请求响应契约，支持 generationTarget、currentStage、failureReason 和 artifactRefs 输出"
+    module: pipeline/model
+    test_file: PipelineTaskModelContractTest.java
+    test_cases: 2
+  - task: "定义任务状态机与事件模型，支持同步正向链路并兼容未来 Spring Statemachine 升级"
+    module: agent/service
+    test_file: DefaultTaskStateMachineTest.java
+    test_cases: 2
+  - task: "定义 AgentScheduler、AgentStepExecutor 和 AgentStepResult 骨架，建立可调度的 Agent 执行内核"
+    module: agent/service
+    test_file: AgentSchedulingContractTest.java
+    test_cases: 1
+  - task: "定义统一 LlmGateway、OpenAI-compatible provider、模型路由配置和 Prompt 模板配置骨架"
+    module: agent/service
+    test_file: LlmGatewayContractTest.java
+    test_cases: 2
+  - task: "新增 addiction_canvas、world_setting、character_profile、book_plan_card、book_outline_draft、agent_execution_log 的实体与仓储骨架"
+    module: creative/repository
+    test_file: ArtifactRepositoryContractTest.java
+    test_cases: 1
+  - task: "扩展 AgentExecutionRequest 和 AgentExecutionResult，使任务执行链路能够传递 generationTarget、阶段结果和产物引用"
+    module: agent/model
+    test_file: AgentExecutionContractTest.java
+    test_cases: 2
+  - task: "扩展 DefaultPipelineTaskApplicationService，使 POST /pipeline-tasks 通过 AgentOrchestrator 同步执行真实创作任务"
+    module: pipeline/controller
+    test_file: PipelineTaskControllerWebTest.java
+    test_cases: 4
+  - task: "定义上瘾画布、世界观设定、人物设定、策划卡和大纲草案的响应 DTO 与查询服务骨架"
+    module: creative/service
+    test_file: ArtifactQueryServiceContractTest.java
+    test_cases: 1
+  - task: "新增 BookArtifactController，提供按书籍查询最新中间产物与最终产物的只读接口"
+    module: book/controller
+    test_file: BookArtifactControllerWebTest.java
+    test_cases: 2
+  - task: "扩展 ErrorCode 和任务阶段枚举，补齐中间产物、生成失败和查询失败的错误码契约"
+    module: common/api
+    test_file: ErrorCodeContractTest.java
+    test_cases: 1
+  - task: "定义本次 feature 的 Controller -> Service -> Repository 集成链路测试入口所需骨架，确保后续 03 阶段可按 integration 规范编写测试"
+    module: integration
+    test_file: PipelineTaskFlowIntegrationTest.java
+    test_cases: 4
+
+type_tests:
+  - type: web-e2e
+    standard: standards/testing/web-e2e.md
+    test_file: BookControllerWebTest.java
+    resources:
+      - requests/create-book-valid.json
+      - requests/create-book-missing-title.json
+    covers:
+      - "定义本次 feature 的 Controller -> Service -> Repository 集成链路测试入口所需骨架，确保后续 03 阶段可按 integration 规范编写测试"
+  - type: web-e2e
+    standard: standards/testing/web-e2e.md
+    test_file: PipelineTaskControllerWebTest.java
+    resources:
+      - requests/create-pipeline-task-plan-card.json
+      - requests/create-pipeline-task-outline.json
+      - requests/create-pipeline-task-missing-book-id.json
+    covers:
+      - "扩展 DefaultPipelineTaskApplicationService，使 POST /pipeline-tasks 通过 AgentOrchestrator 同步执行真实创作任务"
+  - type: web-e2e
+    standard: standards/testing/web-e2e.md
+    test_file: BookArtifactControllerWebTest.java
+    resources: []
+    covers:
+      - "新增 BookArtifactController，提供按书籍查询最新中间产物与最终产物的只读接口"
+  - type: library
+    standard: standards/testing/library.md
+    test_file: DefaultTaskStateMachineTest.java
+    resources: []
+    covers:
+      - "定义任务状态机与事件模型，支持同步正向链路并兼容未来 Spring Statemachine 升级"
+  - type: library
+    standard: standards/testing/library.md
+    test_file: LlmGatewayContractTest.java
+    resources:
+      - contracts/llm/openai-compatible-request.json
+      - contracts/llm/openai-compatible-response.json
+    covers:
+      - "定义统一 LlmGateway、OpenAI-compatible provider、模型路由配置和 Prompt 模板配置骨架"
+  - type: integration
+    standard: standards/testing/integration.md
+    test_file: PipelineTaskFlowIntegrationTest.java
+    resources: []
+    covers:
+      - "定义本次 feature 的 Controller -> Service -> Repository 集成链路测试入口所需骨架，确保后续 03 阶段可按 integration 规范编写测试"
+
+required_files:
+  - NovelFactoryApplicationTest.java
+  - CommonWebContractTest.java
+  - BookControllerWebTest.java
+  - PipelineTaskControllerWebTest.java
+  - StubAgentOrchestratorTest.java
+  - PipelineTaskFlowIntegrationTest.java
+  - ApplicationConfigContractTest.java

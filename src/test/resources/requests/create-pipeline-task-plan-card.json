@@ -1,0 +1,6 @@
+{
+  "bookId": 1,
+  "taskType": "BOOK_ONBOARDING",
+  "generationTarget": "PLAN_CARD",
+  "triggerSource": "MANUAL"
+}

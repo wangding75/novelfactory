@@ -9,7 +9,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.novelfactory.book.controller.BookController;
-import com.novelfactory.book.model.BookStatus;
 import com.novelfactory.book.service.BookApplicationService;
 import com.novelfactory.common.api.ErrorCode;
 import com.novelfactory.common.controller.SystemController;
@@ -27,11 +26,9 @@ import org.springframework.test.web.servlet.MockMvc;
 @Import(GlobalExceptionHandler.class)
 class CommonWebContractTest {
 
-  @Autowired
-  private MockMvc mockMvc;
+  @Autowired private MockMvc mockMvc;
 
-  @MockBean
-  private BookApplicationService bookApplicationService;
+  @MockBean private BookApplicationService bookApplicationService;
 
   @Test
   void ping_returnsUnifiedSuccessResponse() throws Exception {
@@ -44,9 +41,11 @@ class CommonWebContractTest {
 
   @Test
   void validationFailure_returnsValidationErrorEnvelope() throws Exception {
-    mockMvc.perform(post("/api/v1/books")
-            .contentType(MediaType.APPLICATION_JSON)
-            .content("""
+    mockMvc.perform(
+            post("/api/v1/books")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(
+                    """
                 {
                   "genre": "都市系统流",
                   "platform": "FANQIE",
@@ -63,15 +62,18 @@ class CommonWebContractTest {
     when(bookApplicationService.createBook(any()))
         .thenThrow(new BusinessException(ErrorCode.BOOK_CREATE_FAILED, "book create failed"));
 
-    mockMvc.perform(post("/api/v1/books")
-            .contentType(MediaType.APPLICATION_JSON)
-            .content("""
+    mockMvc.perform(
+            post("/api/v1/books")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(
+                    """
                 {
                   "title": "测试书名",
                   "genre": "都市系统流",
                   "platform": "FANQIE",
                   "status": "DRAFT",
-                  "description": "立项说明"
+                  "description": "立项说明",
+                  "source": "MANUAL"
                 }
                 """))
         .andExpect(status().isBadRequest())
@@ -81,18 +83,20 @@ class CommonWebContractTest {
 
   @Test
   void unexpectedException_returnsInternalErrorEnvelope() throws Exception {
-    when(bookApplicationService.createBook(any()))
-        .thenThrow(new RuntimeException("unexpected"));
+    when(bookApplicationService.createBook(any())).thenThrow(new RuntimeException("unexpected"));
 
-    mockMvc.perform(post("/api/v1/books")
-            .contentType(MediaType.APPLICATION_JSON)
-            .content("""
+    mockMvc.perform(
+            post("/api/v1/books")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(
+                    """
                 {
                   "title": "测试书名",
                   "genre": "都市系统流",
                   "platform": "FANQIE",
                   "status": "DRAFT",
-                  "description": "立项说明"
+                  "description": "立项说明",
+                  "source": "MANUAL"
                 }
                 """))
         .andExpect(status().isInternalServerError())

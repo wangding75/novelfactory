@@ -4,5 +4,9 @@ public record PipelineTaskResponse(
     Long taskId,
     Long bookId,
     PipelineTaskType taskType,
+    GenerationTarget generationTarget,
     PipelineTaskStatus status,
-    String resultMessage) {}
+    PipelineTaskStage currentStage,
+    String resultMessage,
+    String failureReason,
+    PipelineTaskArtifactRefs artifactRefs) {}

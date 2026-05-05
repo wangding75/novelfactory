@@ -11,9 +11,12 @@ public class PipelineTaskEntity {
   private Long id;
   private Long bookId;
   private PipelineTaskType taskType;
+  private GenerationTarget generationTarget;
   private PipelineTaskStatus status;
+  private PipelineTaskStage currentStage;
   private TriggerSource triggerSource;
   private String resultMessage;
+  private String failureReason;
   private LocalDateTime createdAt;
   private LocalDateTime updatedAt;
 
@@ -41,12 +44,28 @@ public class PipelineTaskEntity {
     this.taskType = taskType;
   }
 
+  public GenerationTarget getGenerationTarget() {
+    return generationTarget;
+  }
+
+  public void setGenerationTarget(GenerationTarget generationTarget) {
+    this.generationTarget = generationTarget;
+  }
+
   public PipelineTaskStatus getStatus() {
     return status;
   }
 
   public void setStatus(PipelineTaskStatus status) {
     this.status = status;
+  }
+
+  public PipelineTaskStage getCurrentStage() {
+    return currentStage;
+  }
+
+  public void setCurrentStage(PipelineTaskStage currentStage) {
+    this.currentStage = currentStage;
   }
 
   public TriggerSource getTriggerSource() {
@@ -63,6 +82,14 @@ public class PipelineTaskEntity {
 
   public void setResultMessage(String resultMessage) {
     this.resultMessage = resultMessage;
+  }
+
+  public String getFailureReason() {
+    return failureReason;
+  }
+
+  public void setFailureReason(String failureReason) {
+    this.failureReason = failureReason;
   }
 
   public LocalDateTime getCreatedAt() {

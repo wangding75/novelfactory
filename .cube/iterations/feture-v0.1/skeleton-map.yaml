@@ -1,0 +1,304 @@
+files:
+  - path: com/novelfactory/NovelFactoryApplication.java
+    type: class
+    tasks:
+      - "定义本次 feature 的 Controller -> Service -> Repository 集成链路测试入口所需骨架，确保后续 03 阶段可按 integration 规范编写测试"
+
+  - path: com/novelfactory/common/api/ApiResponse.java
+    type: class
+    tasks:
+      - "定义本次 feature 的 Controller -> Service -> Repository 集成链路测试入口所需骨架，确保后续 03 阶段可按 integration 规范编写测试"
+
+  - path: com/novelfactory/common/api/ErrorCode.java
+    type: enum
+    tasks:
+      - "扩展 ErrorCode 和任务阶段枚举，补齐中间产物、生成失败和查询失败的错误码契约"
+
+  - path: com/novelfactory/book/controller/BookController.java
+    type: class
+    tasks:
+      - "定义本次 feature 的 Controller -> Service -> Repository 集成链路测试入口所需骨架，确保后续 03 阶段可按 integration 规范编写测试"
+
+  - path: com/novelfactory/book/controller/BookArtifactController.java
+    type: class
+    tasks:
+      - "新增 BookArtifactController，提供按书籍查询最新中间产物与最终产物的只读接口"
+      - "定义本次 feature 的 Controller -> Service -> Repository 集成链路测试入口所需骨架，确保后续 03 阶段可按 integration 规范编写测试"
+
+  - path: com/novelfactory/book/model/CreateBookRequest.java
+    type: dto
+    tasks:
+      - "定义本次 feature 的 Controller -> Service -> Repository 集成链路测试入口所需骨架，确保后续 03 阶段可按 integration 规范编写测试"
+
+  - path: com/novelfactory/book/model/BookDetailResponse.java
+    type: dto
+    tasks:
+      - "定义本次 feature 的 Controller -> Service -> Repository 集成链路测试入口所需骨架，确保后续 03 阶段可按 integration 规范编写测试"
+
+  - path: com/novelfactory/book/service/BookApplicationService.java
+    type: interface
+    tasks:
+      - "定义本次 feature 的 Controller -> Service -> Repository 集成链路测试入口所需骨架，确保后续 03 阶段可按 integration 规范编写测试"
+
+  - path: com/novelfactory/pipeline/controller/PipelineTaskController.java
+    type: class
+    tasks:
+      - "定义本次 feature 的 Controller -> Service -> Repository 集成链路测试入口所需骨架，确保后续 03 阶段可按 integration 规范编写测试"
+
+  - path: com/novelfactory/pipeline/model/CreatePipelineTaskRequest.java
+    type: dto
+    tasks:
+      - "扩展 pipeline_task 数据模型与请求响应契约，支持 generationTarget、currentStage、failureReason 和 artifactRefs 输出"
+
+  - path: com/novelfactory/pipeline/model/GenerationTarget.java
+    type: enum
+    tasks:
+      - "扩展 pipeline_task 数据模型与请求响应契约，支持 generationTarget、currentStage、failureReason 和 artifactRefs 输出"
+
+  - path: com/novelfactory/pipeline/model/PipelineTaskEntity.java
+    type: class
+    tasks:
+      - "扩展 pipeline_task 数据模型与请求响应契约，支持 generationTarget、currentStage、failureReason 和 artifactRefs 输出"
+
+  - path: com/novelfactory/pipeline/model/PipelineTaskResponse.java
+    type: dto
+    tasks:
+      - "扩展 pipeline_task 数据模型与请求响应契约，支持 generationTarget、currentStage、failureReason 和 artifactRefs 输出"
+
+  - path: com/novelfactory/pipeline/model/PipelineTaskStage.java
+    type: enum
+    tasks:
+      - "扩展 pipeline_task 数据模型与请求响应契约，支持 generationTarget、currentStage、failureReason 和 artifactRefs 输出"
+      - "扩展 ErrorCode 和任务阶段枚举，补齐中间产物、生成失败和查询失败的错误码契约"
+
+  - path: com/novelfactory/pipeline/model/PipelineTaskEvent.java
+    type: enum
+    tasks:
+      - "定义任务状态机与事件模型，支持同步正向链路并兼容未来 Spring Statemachine 升级"
+
+  - path: com/novelfactory/pipeline/model/PipelineTaskArtifactRefs.java
+    type: dto
+    tasks:
+      - "扩展 pipeline_task 数据模型与请求响应契约，支持 generationTarget、currentStage、failureReason 和 artifactRefs 输出"
+      - "扩展 AgentExecutionRequest 和 AgentExecutionResult，使任务执行链路能够传递 generationTarget、阶段结果和产物引用"
+
+  - path: com/novelfactory/pipeline/service/PipelineTaskApplicationService.java
+    type: interface
+    tasks:
+      - "定义本次 feature 的 Controller -> Service -> Repository 集成链路测试入口所需骨架，确保后续 03 阶段可按 integration 规范编写测试"
+
+  - path: com/novelfactory/pipeline/service/DefaultPipelineTaskApplicationService.java
+    type: class
+    tasks:
+      - "扩展 DefaultPipelineTaskApplicationService，使 POST /pipeline-tasks 通过 AgentOrchestrator 同步执行真实创作任务"
+      - "定义本次 feature 的 Controller -> Service -> Repository 集成链路测试入口所需骨架，确保后续 03 阶段可按 integration 规范编写测试"
+
+  - path: com/novelfactory/agent/service/AgentOrchestrator.java
+    type: interface
+    tasks:
+      - "扩展 DefaultPipelineTaskApplicationService，使 POST /pipeline-tasks 通过 AgentOrchestrator 同步执行真实创作任务"
+
+  - path: com/novelfactory/agent/model/AgentExecutionRequest.java
+    type: dto
+    tasks:
+      - "扩展 AgentExecutionRequest 和 AgentExecutionResult，使任务执行链路能够传递 generationTarget、阶段结果和产物引用"
+
+  - path: com/novelfactory/agent/model/AgentExecutionResult.java
+    type: dto
+    tasks:
+      - "扩展 AgentExecutionRequest 和 AgentExecutionResult，使任务执行链路能够传递 generationTarget、阶段结果和产物引用"
+
+  - path: com/novelfactory/agent/model/AgentStepType.java
+    type: enum
+    tasks:
+      - "定义 AgentScheduler、AgentStepExecutor 和 AgentStepResult 骨架，建立可调度的 Agent 执行内核"
+
+  - path: com/novelfactory/agent/model/AgentStepDecision.java
+    type: enum
+    tasks:
+      - "定义 AgentScheduler、AgentStepExecutor 和 AgentStepResult 骨架，建立可调度的 Agent 执行内核"
+
+  - path: com/novelfactory/agent/model/AgentStepContext.java
+    type: dto
+    tasks:
+      - "定义 AgentScheduler、AgentStepExecutor 和 AgentStepResult 骨架，建立可调度的 Agent 执行内核"
+
+  - path: com/novelfactory/agent/model/AgentStepResult.java
+    type: dto
+    tasks:
+      - "定义 AgentScheduler、AgentStepExecutor 和 AgentStepResult 骨架，建立可调度的 Agent 执行内核"
+
+  - path: com/novelfactory/agent/service/AgentScheduler.java
+    type: interface
+    tasks:
+      - "定义 AgentScheduler、AgentStepExecutor 和 AgentStepResult 骨架，建立可调度的 Agent 执行内核"
+
+  - path: com/novelfactory/agent/service/AgentStepExecutor.java
+    type: interface
+    tasks:
+      - "定义 AgentScheduler、AgentStepExecutor 和 AgentStepResult 骨架，建立可调度的 Agent 执行内核"
+
+  - path: com/novelfactory/agent/service/DefaultAgentScheduler.java
+    type: class
+    tasks:
+      - "定义 AgentScheduler、AgentStepExecutor 和 AgentStepResult 骨架，建立可调度的 Agent 执行内核"
+
+  - path: com/novelfactory/agent/service/TaskStateMachine.java
+    type: interface
+    tasks:
+      - "定义任务状态机与事件模型，支持同步正向链路并兼容未来 Spring Statemachine 升级"
+
+  - path: com/novelfactory/agent/service/DefaultTaskStateMachine.java
+    type: class
+    tasks:
+      - "定义任务状态机与事件模型，支持同步正向链路并兼容未来 Spring Statemachine 升级"
+
+  - path: com/novelfactory/agent/model/LlmGenerationRequest.java
+    type: dto
+    tasks:
+      - "定义统一 LlmGateway、OpenAI-compatible provider、模型路由配置和 Prompt 模板配置骨架"
+
+  - path: com/novelfactory/agent/model/LlmGenerationResult.java
+    type: dto
+    tasks:
+      - "定义统一 LlmGateway、OpenAI-compatible provider、模型路由配置和 Prompt 模板配置骨架"
+
+  - path: com/novelfactory/agent/config/LlmProperties.java
+    type: class
+    tasks:
+      - "定义统一 LlmGateway、OpenAI-compatible provider、模型路由配置和 Prompt 模板配置骨架"
+
+  - path: com/novelfactory/agent/service/LlmGateway.java
+    type: interface
+    tasks:
+      - "定义统一 LlmGateway、OpenAI-compatible provider、模型路由配置和 Prompt 模板配置骨架"
+
+  - path: com/novelfactory/agent/service/LlmProvider.java
+    type: interface
+    tasks:
+      - "定义统一 LlmGateway、OpenAI-compatible provider、模型路由配置和 Prompt 模板配置骨架"
+
+  - path: com/novelfactory/agent/service/ModelRoutingPolicy.java
+    type: interface
+    tasks:
+      - "定义统一 LlmGateway、OpenAI-compatible provider、模型路由配置和 Prompt 模板配置骨架"
+
+  - path: com/novelfactory/agent/service/PromptTemplateResolver.java
+    type: interface
+    tasks:
+      - "定义统一 LlmGateway、OpenAI-compatible provider、模型路由配置和 Prompt 模板配置骨架"
+
+  - path: com/novelfactory/agent/service/OpenAiCompatibleLlmProvider.java
+    type: class
+    tasks:
+      - "定义统一 LlmGateway、OpenAI-compatible provider、模型路由配置和 Prompt 模板配置骨架"
+
+  - path: com/novelfactory/agent/service/DefaultLlmGateway.java
+    type: class
+    tasks:
+      - "定义统一 LlmGateway、OpenAI-compatible provider、模型路由配置和 Prompt 模板配置骨架"
+
+  - path: com/novelfactory/creative/model/AddictionCanvasEntity.java
+    type: class
+    tasks:
+      - "新增 addiction_canvas、world_setting、character_profile、book_plan_card、book_outline_draft、agent_execution_log 的实体与仓储骨架"
+
+  - path: com/novelfactory/creative/model/WorldSettingEntity.java
+    type: class
+    tasks:
+      - "新增 addiction_canvas、world_setting、character_profile、book_plan_card、book_outline_draft、agent_execution_log 的实体与仓储骨架"
+
+  - path: com/novelfactory/creative/model/CharacterProfileEntity.java
+    type: class
+    tasks:
+      - "新增 addiction_canvas、world_setting、character_profile、book_plan_card、book_outline_draft、agent_execution_log 的实体与仓储骨架"
+
+  - path: com/novelfactory/plan/model/BookPlanCardEntity.java
+    type: class
+    tasks:
+      - "新增 addiction_canvas、world_setting、character_profile、book_plan_card、book_outline_draft、agent_execution_log 的实体与仓储骨架"
+
+  - path: com/novelfactory/outline/model/BookOutlineDraftEntity.java
+    type: class
+    tasks:
+      - "新增 addiction_canvas、world_setting、character_profile、book_plan_card、book_outline_draft、agent_execution_log 的实体与仓储骨架"
+
+  - path: com/novelfactory/agent/model/AgentExecutionLogEntity.java
+    type: class
+    tasks:
+      - "新增 addiction_canvas、world_setting、character_profile、book_plan_card、book_outline_draft、agent_execution_log 的实体与仓储骨架"
+
+  - path: com/novelfactory/creative/repository/AddictionCanvasRepository.java
+    type: interface
+    tasks:
+      - "新增 addiction_canvas、world_setting、character_profile、book_plan_card、book_outline_draft、agent_execution_log 的实体与仓储骨架"
+
+  - path: com/novelfactory/creative/repository/WorldSettingRepository.java
+    type: interface
+    tasks:
+      - "新增 addiction_canvas、world_setting、character_profile、book_plan_card、book_outline_draft、agent_execution_log 的实体与仓储骨架"
+
+  - path: com/novelfactory/creative/repository/CharacterProfileRepository.java
+    type: interface
+    tasks:
+      - "新增 addiction_canvas、world_setting、character_profile、book_plan_card、book_outline_draft、agent_execution_log 的实体与仓储骨架"
+
+  - path: com/novelfactory/plan/repository/BookPlanCardRepository.java
+    type: interface
+    tasks:
+      - "新增 addiction_canvas、world_setting、character_profile、book_plan_card、book_outline_draft、agent_execution_log 的实体与仓储骨架"
+
+  - path: com/novelfactory/outline/repository/BookOutlineDraftRepository.java
+    type: interface
+    tasks:
+      - "新增 addiction_canvas、world_setting、character_profile、book_plan_card、book_outline_draft、agent_execution_log 的实体与仓储骨架"
+
+  - path: com/novelfactory/agent/repository/AgentExecutionLogRepository.java
+    type: interface
+    tasks:
+      - "新增 addiction_canvas、world_setting、character_profile、book_plan_card、book_outline_draft、agent_execution_log 的实体与仓储骨架"
+
+  - path: com/novelfactory/creative/model/AddictionCanvasResponse.java
+    type: dto
+    tasks:
+      - "定义上瘾画布、世界观设定、人物设定、策划卡和大纲草案的响应 DTO 与查询服务骨架"
+
+  - path: com/novelfactory/creative/model/WorldSettingResponse.java
+    type: dto
+    tasks:
+      - "定义上瘾画布、世界观设定、人物设定、策划卡和大纲草案的响应 DTO 与查询服务骨架"
+
+  - path: com/novelfactory/creative/model/CharacterProfileResponse.java
+    type: dto
+    tasks:
+      - "定义上瘾画布、世界观设定、人物设定、策划卡和大纲草案的响应 DTO 与查询服务骨架"
+
+  - path: com/novelfactory/creative/model/CharacterProfileListResponse.java
+    type: dto
+    tasks:
+      - "定义上瘾画布、世界观设定、人物设定、策划卡和大纲草案的响应 DTO 与查询服务骨架"
+
+  - path: com/novelfactory/plan/model/BookPlanCardResponse.java
+    type: dto
+    tasks:
+      - "定义上瘾画布、世界观设定、人物设定、策划卡和大纲草案的响应 DTO 与查询服务骨架"
+
+  - path: com/novelfactory/outline/model/BookOutlineDraftResponse.java
+    type: dto
+    tasks:
+      - "定义上瘾画布、世界观设定、人物设定、策划卡和大纲草案的响应 DTO 与查询服务骨架"
+
+  - path: com/novelfactory/creative/service/CreativeArtifactQueryService.java
+    type: interface
+    tasks:
+      - "定义上瘾画布、世界观设定、人物设定、策划卡和大纲草案的响应 DTO 与查询服务骨架"
+
+  - path: com/novelfactory/plan/service/PlanCardQueryService.java
+    type: interface
+    tasks:
+      - "定义上瘾画布、世界观设定、人物设定、策划卡和大纲草案的响应 DTO 与查询服务骨架"
+
+  - path: com/novelfactory/outline/service/OutlineDraftQueryService.java
+    type: interface
+    tasks:
+      - "定义上瘾画布、世界观设定、人物设定、策划卡和大纲草案的响应 DTO 与查询服务骨架"

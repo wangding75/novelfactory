@@ -8,4 +8,5 @@ public record CreateBookRequest(
     @NotBlank String genre,
     @NotBlank String platform,
     @NotNull BookStatus status,
-    String description) {}
+    String description,
+    String source) {}

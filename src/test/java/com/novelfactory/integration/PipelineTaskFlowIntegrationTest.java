@@ -14,7 +14,10 @@ import com.novelfactory.common.api.ErrorCode;
 import com.novelfactory.common.exception.BusinessException;
 import com.novelfactory.common.exception.NotFoundException;
 import com.novelfactory.pipeline.model.CreatePipelineTaskRequest;
+import com.novelfactory.pipeline.model.GenerationTarget;
+import com.novelfactory.pipeline.model.PipelineTaskArtifactRefs;
 import com.novelfactory.pipeline.model.PipelineTaskEntity;
+import com.novelfactory.pipeline.model.PipelineTaskStage;
 import com.novelfactory.pipeline.model.PipelineTaskStatus;
 import com.novelfactory.pipeline.model.PipelineTaskType;
 import com.novelfactory.pipeline.model.TriggerSource;
@@ -30,14 +33,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 class PipelineTaskFlowIntegrationTest {
 
-  @Mock
-  private PipelineTaskRepository pipelineTaskRepository;
-
-  @Mock
-  private BookRepository bookRepository;
-
-  @Mock
-  private AgentOrchestrator agentOrchestrator;
+  @Mock private PipelineTaskRepository pipelineTaskRepository;
+  @Mock private BookRepository bookRepository;
+  @Mock private AgentOrchestrator agentOrchestrator;
 
   private DefaultPipelineTaskApplicationService pipelineTaskApplicationService;
 
@@ -59,29 +57,51 @@ class PipelineTaskFlowIntegrationTest {
     task.setId(1001L);
     task.setBookId(1L);
     task.setTaskType(PipelineTaskType.BOOK_ONBOARDING);
+    task.setGenerationTarget(GenerationTarget.PLAN_CARD);
     task.setStatus(PipelineTaskStatus.COMPLETED);
+    task.setCurrentStage(PipelineTaskStage.COMPLETED);
     task.setTriggerSource(TriggerSource.MANUAL);
     task.setResultMessage("stub execution completed");
 
     when(bookRepository.findById(1L)).thenReturn(Optional.of(book));
     when(pipelineTaskRepository.save(any())).thenReturn(task);
-    when(agentOrchestrator.execute(any())).thenReturn(new AgentExecutionResult(true, "stub execution completed"));
+    when(agentOrchestrator.execute(any()))
+        .thenReturn(
+            new AgentExecutionResult(
+                true,
+                PipelineTaskStatus.COMPLETED,
+                PipelineTaskStage.COMPLETED,
+                "stub execution completed",
+                null,
+                PipelineTaskArtifactRefs.empty()));
 
-    var result = pipelineTaskApplicationService.createPipelineTask(
-        new CreatePipelineTaskRequest(1L, PipelineTaskType.BOOK_ONBOARDING, TriggerSource.MANUAL));
+    var result =
+        pipelineTaskApplicationService.createPipelineTask(
+            new CreatePipelineTaskRequest(
+                1L,
+                PipelineTaskType.BOOK_ONBOARDING,
+                GenerationTarget.PLAN_CARD,
+                TriggerSource.MANUAL));
 
     assertThat(result.taskId()).isEqualTo(1001L);
     assertThat(result.status()).isEqualTo(PipelineTaskStatus.COMPLETED);
+    assertThat(result.currentStage()).isEqualTo(PipelineTaskStage.COMPLETED);
   }
 
   @Test
   void createPipelineTask_whenBookMissing_throwsBookNotFound() {
     when(bookRepository.findById(404L)).thenReturn(Optional.empty());
 
-    var exception = catchThrowableOfType(
-        () -> pipelineTaskApplicationService.createPipelineTask(
-            new CreatePipelineTaskRequest(404L, PipelineTaskType.BOOK_ONBOARDING, TriggerSource.MANUAL)),
-        NotFoundException.class);
+    var exception =
+        catchThrowableOfType(
+            () ->
+                pipelineTaskApplicationService.createPipelineTask(
+                    new CreatePipelineTaskRequest(
+                        404L,
+                        PipelineTaskType.BOOK_ONBOARDING,
+                        GenerationTarget.PLAN_CARD,
+                        TriggerSource.MANUAL)),
+            NotFoundException.class);
 
     assertThat(exception.getErrorCode()).isEqualTo(ErrorCode.BOOK_NOT_FOUND);
   }
@@ -96,10 +116,16 @@ class PipelineTaskFlowIntegrationTest {
     when(agentOrchestrator.execute(any()))
         .thenThrow(new BusinessException(ErrorCode.AGENT_EXECUTION_FAILED, "agent execution failed"));
 
-    var exception = catchThrowableOfType(
-        () -> pipelineTaskApplicationService.createPipelineTask(
-            new CreatePipelineTaskRequest(1L, PipelineTaskType.BOOK_ONBOARDING, TriggerSource.MANUAL)),
-        BusinessException.class);
+    var exception =
+        catchThrowableOfType(
+            () ->
+                pipelineTaskApplicationService.createPipelineTask(
+                    new CreatePipelineTaskRequest(
+                        1L,
+                        PipelineTaskType.BOOK_ONBOARDING,
+                        GenerationTarget.PLAN_CARD_AND_OUTLINE,
+                        TriggerSource.MANUAL)),
+            BusinessException.class);
 
     assertThat(exception.getErrorCode()).isEqualTo(ErrorCode.AGENT_EXECUTION_FAILED);
   }
@@ -108,9 +134,9 @@ class PipelineTaskFlowIntegrationTest {
   void getPipelineTask_whenMissing_throwsPipelineTaskNotFound() {
     when(pipelineTaskRepository.findById(1001L)).thenReturn(Optional.empty());
 
-    var exception = catchThrowableOfType(
-        () -> pipelineTaskApplicationService.getPipelineTask(1001L),
-        NotFoundException.class);
+    var exception =
+        catchThrowableOfType(
+            () -> pipelineTaskApplicationService.getPipelineTask(1001L), NotFoundException.class);
 
     assertThat(exception.getErrorCode()).isEqualTo(ErrorCode.PIPELINE_TASK_NOT_FOUND);
   }

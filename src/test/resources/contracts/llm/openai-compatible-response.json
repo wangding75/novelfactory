@@ -1,0 +1,8 @@
+{
+  "success": true,
+  "providerName": "openai-compatible",
+  "modelName": "gpt-4.1-mini",
+  "rawText": "{\"oneLineHook\":\"一句话卖点\"}",
+  "structuredPayload": "{\"oneLineHook\":\"一句话卖点\"}",
+  "failureReason": null
+}

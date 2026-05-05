@@ -1,5 +1,6 @@
 package com.novelfactory.pipeline.model;
 
 public enum PipelineTaskType {
-  BOOK_ONBOARDING
+  BOOK_ONBOARDING,
+  BOOK_CREATION
 }

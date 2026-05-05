@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.novelfactory.agent.service.StubAgentOrchestratorTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-05-05T03:43:00.725Z" hostname="LAPTOP-MUCR3O1G" time="0.063">
+  <properties/>
+  <testcase name="execute_withMissingBookId_throwsIllegalArgumentException()" classname="com.novelfactory.agent.service.StubAgentOrchestratorTest" time="0.03"/>
+  <testcase name="execute_returnsSuccessfulStubResult()" classname="com.novelfactory.agent.service.StubAgentOrchestratorTest" time="0.028"/>
+  <testcase name="execute_withMissingTaskType_throwsIllegalArgumentException()" classname="com.novelfactory.agent.service.StubAgentOrchestratorTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

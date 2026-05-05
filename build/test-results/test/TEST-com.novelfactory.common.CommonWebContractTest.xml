@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.novelfactory.common.CommonWebContractTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-05-05T03:43:07.881Z" hostname="LAPTOP-MUCR3O1G" time="2.714">
+  <properties/>
+  <testcase name="internalBusinessException_returnsConfiguredErrorCode()" classname="com.novelfactory.common.CommonWebContractTest" time="0.05"/>
+  <testcase name="validationFailure_returnsValidationErrorEnvelope()" classname="com.novelfactory.common.CommonWebContractTest" time="0.008"/>
+  <testcase name="unexpectedException_returnsInternalErrorEnvelope()" classname="com.novelfactory.common.CommonWebContractTest" time="0.007"/>
+  <testcase name="ping_returnsUnifiedSuccessResponse()" classname="com.novelfactory.common.CommonWebContractTest" time="0.005"/>
+  <system-out><![CDATA[2026-05-05T11:43:07.907+08:00  INFO 13514 --- [novel-factory] [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.novelfactory.common.CommonWebContractTest]: CommonWebContractTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-05-05T11:43:08.309+08:00  INFO 13514 --- [novel-factory] [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.novelfactory.NovelFactoryApplication for test class com.novelfactory.common.CommonWebContractTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.3.2)
+
+2026-05-05T11:43:08.748+08:00  INFO 13514 --- [novel-factory] [    Test worker] c.n.common.CommonWebContractTest         : Starting CommonWebContractTest using Java 21.0.3 with PID 13514 (started by wangding in /mnt/d/git/novelfactory)
+2026-05-05T11:43:08.750+08:00  INFO 13514 --- [novel-factory] [    Test worker] c.n.common.CommonWebContractTest         : No active profile set, falling back to 1 default profile: "default"
+2026-05-05T11:43:10.507+08:00  INFO 13514 --- [novel-factory] [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-05-05T11:43:10.507+08:00  INFO 13514 --- [novel-factory] [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-05-05T11:43:10.508+08:00  INFO 13514 --- [novel-factory] [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2026-05-05T11:43:10.517+08:00  INFO 13514 --- [novel-factory] [    Test worker] c.n.common.CommonWebContractTest         : Started CommonWebContractTest in 2.169 seconds (process running for 40.327)
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

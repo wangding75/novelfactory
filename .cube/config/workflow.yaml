@@ -1,0 +1,31 @@
+project:
+  name: Novel Factory
+  language: java
+  structure: single-module
+
+stages:
+  - id: 01-prd
+    name: PRD
+  - id: 02-design
+    name: Design
+  - id: 03-test-cases
+    name: Test Cases
+  - id: 04-development
+    name: Development
+    on_enter:
+      - create_status_yaml
+      - lock_tests
+  - id: 05-testing
+    name: Testing
+
+paths:
+  source_dir: src/main/java
+  test_dir: src/test/java
+  test_resource_dir: src/test/resources
+
+language_config:
+  build_tool: gradle
+  compile_command: ":"
+  test_command: "./gradlew test -q"
+  test_command_single: "./gradlew test --tests '{{class}}' -q"
+  test_file_pattern: "*Test.java"

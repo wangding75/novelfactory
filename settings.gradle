@@ -1,0 +1,3 @@
+rootProject.name = 'novel-factory'
+
+enableFeaturePreview('TYPESAFE_PROJECT_ACCESSORS')

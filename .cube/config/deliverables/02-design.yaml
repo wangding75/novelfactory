@@ -1,0 +1,37 @@
+stage: 02-design
+name: Design
+
+deliverables:
+  - id: design-doc
+    type: file
+    path: design.md
+    required: true
+    min_size_bytes: 1500
+    must_contain:
+      - "Flow Design"
+      - "Table Design"
+      - "API"
+      - "Output Contract"
+      - "Development Tasks"
+
+  - id: skeleton-map
+    type: file
+    path: skeleton-map.yaml
+    required: true
+    min_size_bytes: 800
+    must_contain:
+      - "com/novelfactory/NovelFactoryApplication.java"
+      - "com/novelfactory/book/controller/BookController.java"
+      - "com/novelfactory/pipeline/controller/PipelineTaskController.java"
+      - "com/novelfactory/agent/service/AgentOrchestrator.java"
+
+checks:
+  - id: skeleton-root
+    type: files
+    path: ${paths.source_dir}
+    patterns:
+      - "NovelFactoryApplication.java"
+      - "BookController.java"
+      - "PipelineTaskController.java"
+      - "AgentOrchestrator.java"
+      - "ApiResponse.java"
